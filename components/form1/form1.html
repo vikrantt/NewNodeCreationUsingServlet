@@ -1,0 +1,33 @@
+<sly data-sly-use.model="com.mywebsite.core.models.PagePathsModel">
+    <div data-sly-set.x="${model.path1}"></div>
+    <div data-sly-set.y="${model.path2}"></div>
+
+    <body>
+    <h1>${x}</h1>
+    <form>
+        <input type="text" id="fname" name="fname"><br>
+        <button type="submit">Submit</button>
+
+        <script>
+        $(document).ready(function(){
+          $("button").click(function(){
+            $.ajax({
+                    url: '/bin/submitdata1',
+                    method: 'POST',
+                    data: {},
+                    cache: false,
+                    mimeType: 'text/html',
+                    success: function (data) {
+                        window.location.href="${x @context='html'}.html";
+                    },
+                    error: function (xhr, status, err) {
+                         window.location.href="${y @context='html'}.html";
+                    }
+                });
+          });
+        });
+        </script>
+            </form>
+    </body>
+
+</sly>

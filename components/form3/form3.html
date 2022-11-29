@@ -1,0 +1,40 @@
+<sly data-sly-use.model="com.mywebsite.core.models.PagePathsModel">
+    <div data-sly-set.x="${model.path1}"></div>
+    <div data-sly-set.y="${model.path2}"></div>
+
+    <body>
+
+    <form method="post" enctype="multipart/form-data" action="/bin/submitdata3">
+        <label>Name:</label>
+        <input type="text" id="name" name="name"><br><br>
+        <label>Phone Number:</label>
+        <input type="text" id="phoneNo" name="phoneNo"><br><br>
+        <label>Age:</label>
+        <input type="text" id="age" name="age"><br><br>
+        <label>DateOfBirth:</label>
+        <input type="text" id="dob" name="dob"><br>
+        <button type="submit">Submit</button>
+
+        <script>
+        $(document).ready(function(){
+          $("button").click(function(){
+            $.ajax({
+                    url: '/bin/submitdata3',
+                    method: 'POST',
+                    data: {},
+                    cache: false,
+                    mimeType: 'text/html',
+                    success: function (data) {
+                        window.location.href="${x @context='html'}.html";
+                    },
+                    error: function (xhr, status, err) {
+                         window.location.href="${y @context='html'}.html";
+                    }
+                });
+          });
+        });
+        </script>
+            </form>
+    </body>
+
+</sly>
